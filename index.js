@@ -45,48 +45,58 @@ const { valoresFibDez } = require("./Desafios/desafiosete.js");
 const { detalhesNotas } = require("./Desafios/desafiooito.js");
 
 
-
-
 const app = express();
 app.use(express.json());
 const port = 3000;
 
 app.post("/api/exum", (req, res) => {
-  const result = somar(req.body.num1, req.body.num2);
+  try{
+    const result = somar(req.body.num1, req.body.num2);
+    res.status(200).json({message: `A soma dos números é: ${result}`});
 
-  res.status(200).json({
-    message: `A soma dos número é: ${result}`,
-  });
+  }catch(error){
+    console.log(error);
+    res.status(500).json({message: "ERROR"});
+  }
 });
 
 app.post("/api/exdois", (req, res) => {
-  const result = valor_receber(req.body.valor_hr, req.body.qtde_horas);
+  try{
+    const result = valor_receber(req.body.valor_hr, req.body.qtde_horas);
+    res.status(200).json({message: `O trabalhador irá receber no final do mês o valor de: ${result}`});
 
-  res.status(200).json({
-    message: `O trabalhador irá receber no final do mês o valor de: ${result}`,
-  });
+  }catch(error){
+    console.log(error);
+    res.status(500).json({message: "ERROR"});
+  }
 });
 
 app.post("/api/extres", (req, res) => {
-  const result = peso(
-    req.body.peso1,
-    req.body.peso2,
-    req.body.peso3,
-    req.body.peso4,
-    req.body.peso5
-  );
-
-  res.status(200).json({
-    message: `A média dos 5 pesos é: ${result}`,
-  });
+  try{
+    const result = peso(
+      req.body.peso1,
+      req.body.peso2,
+      req.body.peso3,
+      req.body.peso4,
+      req.body.peso5
+    );
+    res.status(200).json({message: `A média dos 5 pesos é: ${result}`});
+  
+  }catch(error){
+    console.log(error);
+    res.status(500).json({message: "ERROR"});
+  }
 });
 
 app.post("/api/exquatro", (req, res) => {
-  const result = temperaturaF(req.body.temperatura_C);
-
-  res.status(200).json({
-    message: `A temperatura em Fahrenheit é: ${result}`,
-  });
+  try{
+    const result = temperaturaF(req.body.temperatura_C);
+    res.status(200).json({message: `A temperatura em Fahrenheit é: ${result}`});
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).json({message: "ERROR"});
+  }
 });
 
 app.post("/api/excinco", (req, res) => {
@@ -272,7 +282,7 @@ app.post('/api/desafios/desafiocinco', (req, res) => {
 
 app.post('/api/desafios/desafioseis', (req, res) => {
   const resultado = valoresFibonacci(req.body.qntdeTermos);
-  res.status(200).json({message: `OS NÚMEROS GERADOS FORAM: ${resultado}`});
+  res.status(200).json({message: `Os números gerados foram: ${resultado}`});
 });
 
 app.post('/api/desafios/desafiosete', (_, res) => {
@@ -289,6 +299,21 @@ app.post('/api/desafios/desafiooito', (req, res) => {
     menoresNotas: resultado.menoresNotas
   });
 });
+
+/*Router
+
+const express = require('express')
+const router = require('./src/routes/exercicio.js')
+
+const app = express()
+const port = 3000
+
+app.use(express.json())
+app.use(router)
+
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`)
+})*/
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);

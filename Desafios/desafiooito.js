@@ -2,7 +2,7 @@ function detalhesNotas(notas){
     let maioresNotas = [];
     let menoresNotas = [];
     let maiorNota = 0;
-    let menorNota = 10;
+    let menorNota = 1;
     let somaNotas = 0;
     
     for(let i = 0; i < notas.length; i++){
@@ -29,7 +29,7 @@ function detalhesNotas(notas){
     }
 
 
-    return {maiorNota, menorNota, media, maioresNotas, menoresNotas}
+    return {maiorNota, menorNota, media, maioresNotas}
 }
 
 module.exports = { detalhesNotas }

@@ -18,7 +18,7 @@ function NumPosParMult(numeros){
             }
         }
 
-        return `${positivos} / 10 POositivos ||| ${pares} / 10 Pares ||| ${multiplosSete} / 10 Múltiplos de 7`;
+        return `${positivos} de 10 são Positivos | ${pares} de 10 são Pares | ${multiplosSete} de 10 são Múltiplos de 7`;
     }
 }
 
